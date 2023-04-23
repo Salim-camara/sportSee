@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ChartBar from "../components/charts/ChartBar";
 
 const Home = () => {
   const [logements, setlogements] = useState();
@@ -58,7 +59,25 @@ const Home = () => {
           </div>
           <p className="home__content__menu--text">Copirygth SportSee 2020</p>
         </div>
-        <div className="home__content__board"></div>
+        <div className="home__content__board">
+          <div className="home__content__board__top">
+            <div className="home__content__board__top__title">
+              <p className="home__content__board__top__title--hello">Bonjour</p>
+              <p className="home__content__board__top__title--name">Thomas</p>
+            </div>
+            <p className="home__content__board__top__subtitle">
+              Félicitations ! Vous avez explosé vos objectifs hier{" "}
+            </p>
+          </div>
+          <div className="home__content__board__bottom">
+            <div className="home__content__board__bottom__left">
+              <div className="home__content__board__bottom__left--barChart">
+                <ChartBar />
+              </div>
+            </div>
+            <div className="home__content__board__bottom__right"></div>
+          </div>
+        </div>
       </div>
     </div>
   );
