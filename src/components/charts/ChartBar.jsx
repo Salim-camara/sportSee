@@ -43,6 +43,17 @@ const ChartBar = () => {
         />
         <Bar dataKey="uv" fill="#FF0101" barSize={7} />
       </BarChart>
+      {/* <p>Activité quotidienne</p>
+      <div>
+        <div>
+          <div></div>
+          <p>Poids (kg)</p>
+        </div>
+        <div>
+          <div></div>
+          <p>Calories brûlées (kCal)</p>
+        </div>
+      </div> */}
     </div>
   );
 };
