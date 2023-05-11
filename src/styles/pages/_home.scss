@@ -147,6 +147,9 @@
           margin-left: 50px;
 
           &--chartsContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
             margin-top:  80px;
           }
         }
