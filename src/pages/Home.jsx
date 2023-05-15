@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ChartBar from "../components/charts/ChartBar";
 import ChartLine from "../components/charts/ChartLine";
 import ChartRadar from "../components/charts/ChartRadar";
+import ChartCircle from "../components/charts/ChartCircle";
 
 const Home = () => {
   const [logements, setlogements] = useState();
@@ -78,6 +79,7 @@ const Home = () => {
                 <div className="home__content__board__bottom__left--chartsContainer">
                   <ChartLine />
                   <ChartRadar />
+                  <ChartCircle />
                 </div>
               </div>
             </div>
