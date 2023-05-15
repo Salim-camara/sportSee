@@ -3,9 +3,19 @@ import ChartBar from "../components/charts/ChartBar";
 import ChartLine from "../components/charts/ChartLine";
 import ChartRadar from "../components/charts/ChartRadar";
 import ChartCircle from "../components/charts/ChartCircle";
+import CardInfo from "../components/CardInfo";
 
 const Home = () => {
   const [logements, setlogements] = useState();
+  const infoCard = [
+    {
+      title: "Glucide",
+      bgc: "rgba(0, 0, 0, 0.5)",
+      value: "kCal",
+      icon: require("./../assets/images/icon_fire.png"),
+      number: "150",
+    },
+  ];
 
   return (
     <div className="home">
@@ -83,7 +93,17 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="home__content__board__bottom__right"></div>
+            <div className="home__content__board__bottom__right">
+              {infoCard.map((el) => (
+                <CardInfo
+                  title={el.title}
+                  bgc={el.bgc}
+                  number={el.number}
+                  value={el.value}
+                  icon={el.icon}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
