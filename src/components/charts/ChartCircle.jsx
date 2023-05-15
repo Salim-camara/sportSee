@@ -4,40 +4,38 @@ import { Legend, RadialBarChart, RadialBar, Tooltip } from "recharts";
 const ChartCircle = () => {
   const data = [
     {
-      name: "18-24",
-      uv: 31.47,
-      pv: 2400,
-      fill: "#8884d8",
+      fill: "transparent",
+      value: 100,
     },
+    {
+        name: "18-24",
+        fill: "#FF0101",
+        value: 30,
+      },
   ];
   return (
     <div className="chartCircle">
+        <p className="chartCircle--score">Score</p>
       <RadialBarChart
         width={730}
         height={250}
-        innerRadius="10%"
-        outerRadius="80%"
+        innerRadius="60%"
+        outerRadius="90%"
         data={data}
-        startAngle={360}
-        endAngle={0}
+        startAngle={90}
+        endAngle={450}
       >
         <RadialBar
-          minAngle={150}
-          label={{ fill: "#666", position: "insideStart" }}
-          background
-          clockWise={true}
-          dataKey="uv"
+          minAngle={15}
+        //   clockWise={true}
+          dataKey="value"
+          cornerRadius={50}
         />
-        <Legend
-          iconSize={10}
-          width={120}
-          height={140}
-          layout="vertical"
-          verticalAlign="middle"
-          align="right"
-        />
-        <Tooltip />
       </RadialBarChart>
+      <div className="chartCircle__text">
+        <p className="chartCircle__text--title">30%</p>
+        <p className="chartCircle__text--subTitle">de votre <br />objectif</p>
+      </div>
     </div>
   );
 };
