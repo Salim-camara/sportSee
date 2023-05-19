@@ -2,11 +2,14 @@ import logo from "./logo.svg";
 import "./App.css";
 import Router from "./Router";
 import "./styles/main.scss";
+import DataContextProvider from "./hooks/useData";
 
 function App() {
   return (
     <div className="App">
-      <Router></Router>
+      <DataContextProvider>
+        <Router></Router>
+      </DataContextProvider>
     </div>
   );
 }

@@ -4,9 +4,10 @@ import ChartLine from "../components/charts/ChartLine";
 import ChartRadar from "../components/charts/ChartRadar";
 import ChartCircle from "../components/charts/ChartCircle";
 import CardInfo from "../components/CardInfo";
+import { useData } from "../hooks/useData";
 
 const Home = () => {
-  const [logements, setlogements] = useState();
+  const { user, userInfos } = useData();
   const infoCard = [
     {
       title: "Calories",
@@ -22,7 +23,7 @@ const Home = () => {
       icon: require("./../assets/images/icon_chicken.png"),
       iconStyle: {
         width: 18.84,
-        height: 18.74
+        height: 18.74,
       },
       number: "155",
     },
@@ -33,7 +34,7 @@ const Home = () => {
       icon: require("./../assets/images/icon_apple.png"),
       iconStyle: {
         width: 16.81,
-        height: 20
+        height: 20,
       },
       number: "155",
     },
@@ -44,7 +45,7 @@ const Home = () => {
       icon: require("./../assets/images/icon_burger.png"),
       iconStyle: {
         width: 20,
-        height: 18.75
+        height: 18.75,
       },
       number: "155",
     },
