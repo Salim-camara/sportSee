@@ -3,7 +3,7 @@ import React from "react";
 const CardInfo = ({ title, number, value, bgc, icon, style, iconStyle }) => {
   return (
     <div className="cardInfo">
-      <div className="cardInfo__iconContainer">
+      <div className="cardInfo__iconContainer" style={{backgroundColor: bgc}}>
         <img
           src={icon || require("./../assets/images/icon_fire.png")}
           style={{ height: 20, width: 15.18, ...iconStyle }}

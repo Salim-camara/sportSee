@@ -9,11 +9,44 @@ const Home = () => {
   const [logements, setlogements] = useState();
   const infoCard = [
     {
-      title: "Glucide",
-      bgc: "rgba(0, 0, 0, 0.5)",
+      title: "Calories",
+      bgc: "rgba(255, 1, 1, 0.1)",
       value: "kCal",
       icon: require("./../assets/images/icon_fire.png"),
       number: "150",
+    },
+    {
+      title: "Proteines",
+      bgc: "rgba(74, 184, 255, 0.1)",
+      value: "g",
+      icon: require("./../assets/images/icon_chicken.png"),
+      iconStyle: {
+        width: 18.84,
+        height: 18.74
+      },
+      number: "155",
+    },
+    {
+      title: "Glucides",
+      bgc: "rgba(253, 204, 12, 0.1)",
+      value: "g",
+      icon: require("./../assets/images/icon_apple.png"),
+      iconStyle: {
+        width: 16.81,
+        height: 20
+      },
+      number: "155",
+    },
+    {
+      title: "Lipides",
+      bgc: "rgba(253, 81, 129, 0.1)",
+      value: "g",
+      icon: require("./../assets/images/icon_burger.png"),
+      iconStyle: {
+        width: 20,
+        height: 18.75
+      },
+      number: "155",
     },
   ];
 
@@ -101,6 +134,7 @@ const Home = () => {
                   number={el.number}
                   value={el.value}
                   icon={el.icon}
+                  iconStyle={el.iconStyle}
                 />
               ))}
             </div>
