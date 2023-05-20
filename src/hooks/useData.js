@@ -9,6 +9,8 @@ export const useData = () => useContext(DataContext);
 const DataContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [userInfos, setUserInfos] = useState(null);
+  const [averageSession, setAverageSession] = useState(null);
+  const [tmp, setTmp] = useState()
 
   useEffect(() => {
     Axios.get(`${REQUEST_URL}${USERID}`)
@@ -24,13 +26,21 @@ const DataContextProvider = (props) => {
         })
       })
       .catch((err) => console.error("error: ", err));
+
+      Axios.get(`${REQUEST_URL}${USERID}/average-sessions`)
+      .then((res) => {
+        const data = res.data.data;
+        setAverageSession(data.sessions)
+      })
+      .catch((err) => console.error("error: ", err));
   }, []);
 
   return (
     <DataContext.Provider
       value={{
         user,
-        userInfos
+        userInfos,
+        averageSession
       }}
     >
       {props.children}

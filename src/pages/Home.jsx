@@ -14,7 +14,7 @@ const Home = () => {
       bgc: "rgba(255, 1, 1, 0.1)",
       value: "kCal",
       icon: require("./../assets/images/icon_fire.png"),
-      number: "150",
+      number: userInfos?.calorieCount,
     },
     {
       title: "Proteines",
@@ -25,7 +25,7 @@ const Home = () => {
         width: 18.84,
         height: 18.74,
       },
-      number: "155",
+      number: userInfos?.proteinCount,
     },
     {
       title: "Glucides",
@@ -36,7 +36,7 @@ const Home = () => {
         width: 16.81,
         height: 20,
       },
-      number: "155",
+      number: userInfos?.carbohydrateCount,
     },
     {
       title: "Lipides",
@@ -47,7 +47,7 @@ const Home = () => {
         width: 20,
         height: 18.75,
       },
-      number: "155",
+      number: userInfos?.lipidCount,
     },
   ];
 
@@ -109,8 +109,8 @@ const Home = () => {
         <div className="home__content__board">
           <div className="home__content__board__top">
             <div className="home__content__board__top__title">
-              <p className="home__content__board__top__title--hello">Bonjour</p>
-              <p className="home__content__board__top__title--name">Thomas</p>
+              <p className="home__content__board__top__title--hello">Bonjour&nbsp;</p>
+              <p className="home__content__board__top__title--name">{user?.firstName}</p>
             </div>
             <p className="home__content__board__top__subtitle">
               Félicitations ! Vous avez explosé vos objectifs hier{" "}
