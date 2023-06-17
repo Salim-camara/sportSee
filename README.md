@@ -10,7 +10,7 @@ You must have [`Node 16`](https://nodejs.org/en/) installed with `npm 8`.\
 Higher versions should also work, though this has not been tested.
 
 
-## 🚀 Start using the API
+### 🚀 Start using the API
 
 Clone the backend here:\
 https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard
@@ -25,3 +25,18 @@ Once the backend is here, run:
 ```
 
 For more details, please check the backend REAME.md
+
+#### !! Run the front
+
+You need to install node_module in your front
+
+```
+-cd <your frontend folder>
+-yarn OR npm install to install node_modules
+
+```
+
+Now you can START THE PROJECT with a simple YARN START or NPM START
+
+Enjoy !
+
