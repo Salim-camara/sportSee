@@ -7,53 +7,57 @@ import {
   Legend,
   Tooltip,
   CartesianGrid,
+  Cell,
 } from "recharts";
+import { useData } from "../../hooks/useData";
 
 const ChartBar = () => {
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-    },
-  ];
+  const { user, activity } = useData();
+
   return (
     <div className="chartBar">
-      <BarChart width={730} height={250} data={data}>
+      <div className="chartBar__topContainer">
+        <p className="chartBar__topContainer--title">Activité quotidienne</p>
+        <div className="chartBar__topContainer__rightInfo">
+          <div className="chartBar__topContainer__rightInfo__weightContainer">
+            <div className="chartBar__topContainer__rightInfo__weightContainer--dot"></div>
+            <p className="chartBar__topContainer__rightInfo--text">
+              Poids (kg)
+            </p>
+          </div>
+          <div className="chartBar__topContainer__rightInfo__caloriesContainer">
+            <div className="chartBar__topContainer__rightInfo__caloriesContainer--dot"></div>
+            <p className="chartBar__topContainer__rightInfo--text">
+              Calories brûlées (kCal)
+            </p>
+          </div>
+        </div>
+      </div>
+      <BarChart width={730} height={250} data={activity}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" tick={true} />
+        <XAxis
+          dataKey={(e) => {
+            const index = activity.findIndex((item) => item.day === e.day);
+            return index + 1;
+          }}
+          tick={true}
+        />
         <YAxis orientation="right" />
         <Tooltip />
-        <Legend />
         <Bar
-          dataKey="pv"
+          dataKey="kilogram"
           fill="#020203"
           barSize={7}
           style={{ borderRadius: 50 }}
+          radius={[10, 10, 0, 0]}
         />
-        <Bar dataKey="uv" fill="#FF0101" barSize={7} />
+        <Bar
+          dataKey="calories"
+          fill="#FF0101"
+          barSize={7}
+          radius={[10, 10, 0, 0]}
+        />
       </BarChart>
-      {/* <p>Activité quotidienne</p>
-      <div>
-        <div>
-          <div></div>
-          <p>Poids (kg)</p>
-        </div>
-        <div>
-          <div></div>
-          <p>Calories brûlées (kCal)</p>
-        </div>
-      </div> */}
     </div>
   );
 };

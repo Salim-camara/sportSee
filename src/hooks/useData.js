@@ -9,6 +9,7 @@ const DataContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [userInfos, setUserInfos] = useState(null);
   const [averageSession, setAverageSession] = useState(null);
+  const [activity, setActivity] = useState(null);
   const [perf, setPerf] = useState(null);
 
   useEffect(() => {
@@ -47,6 +48,21 @@ const DataContextProvider = (props) => {
         setPerf(tmp);
       })
       .catch((err) => console.error("error: ", err));
+
+    Axios.get(`${REQUEST_URL}${USERID}/activity`)
+      .then(async (res) => {
+        const data = res.data.data.sessions;
+        let tmp = await Promise.all(
+          data.map((el) => {
+            return {
+              
+              ...el
+            };
+          })
+        );
+        setActivity(tmp);
+      })
+      .catch((err) => console.error("error: ", err));
   }, []);
 
   return (
@@ -56,6 +72,7 @@ const DataContextProvider = (props) => {
         userInfos,
         averageSession,
         perf,
+        activity,
       }}
     >
       {props.children}
