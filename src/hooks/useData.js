@@ -5,6 +5,10 @@ import { REQUEST_URL, USERID } from "../services/variables";
 export const DataContext = createContext();
 export const useData = () => useContext(DataContext);
 
+// This component fetch all app data and dispatch it in all childrens components using the React hook " useContext "
+// To retrieve data in children component, call useData hook and bring constants you need
+// For more info about useContext, please check https://legacy.reactjs.org/docs/hooks-reference.html#usecontext
+
 const DataContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [userInfos, setUserInfos] = useState(null);
@@ -55,8 +59,7 @@ const DataContextProvider = (props) => {
         let tmp = await Promise.all(
           data.map((el) => {
             return {
-              
-              ...el
+              ...el,
             };
           })
         );

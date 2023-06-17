@@ -27,7 +27,7 @@ const ChartCircle = () => {
         },
       ]);
     setLoad(true);
-  }, []);
+  }, [userInfos]);
 
   return (
     <div className="chartCircle">
@@ -45,13 +45,15 @@ const ChartCircle = () => {
           </RadialBarChart>
         </ResponsiveContainer>
       )}
-      {load && <div className="chartCircle__text">
-        <p className="chartCircle__text--title">{formatedData[1]?.value}%</p>
-        <p className="chartCircle__text--subTitle">
-          de votre <br />
-          objectif
-        </p>
-      </div>}
+      {load && (
+        <div className="chartCircle__text">
+          <p className="chartCircle__text--title">{formatedData[1]?.value}%</p>
+          <p className="chartCircle__text--subTitle">
+            de votre <br />
+            objectif
+          </p>
+        </div>
+      )}
     </div>
   );
 };
