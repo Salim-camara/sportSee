@@ -23,7 +23,7 @@ const ChartLine = () => {
     <div className="chartLine">
       <p className="chartLine--title">Durée moyenne des sessions</p>
       <div className="chartLine--chart">
-        <ResponsiveContainer width={'100%'} aspect={1}>
+        <ResponsiveContainer width={'135%'} aspect={2}>
           <LineChart
             data={averageSession}
             // margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -40,7 +40,7 @@ const ChartLine = () => {
             <Line
               type="monotone"
               dataKey="sessionLength"
-              stroke="green"
+              stroke="white"
               dot={false}
             />
           </LineChart>

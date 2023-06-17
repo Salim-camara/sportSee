@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 28%;
+  width: 31%;
   aspect-ratio: 1;
   border-radius: 5px;
   background-color: #fbfbfb;
@@ -11,7 +11,7 @@
   &--score {
     position: absolute;
     left: 20px;
-    top: 0;
+    top: -5px;
     color: #282D30;
     font-weight: 900;
   }

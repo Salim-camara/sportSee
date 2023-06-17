@@ -15,8 +15,8 @@ const ChartRadar = () => {
 
   return (
     <div className="chartRadar">
-      <ResponsiveContainer aspect={1}>
-        <RadarChart outerRadius={90} data={perf} width={"28%"}>
+      <ResponsiveContainer width={'100%'} aspect={1}>
+        <RadarChart outerRadius={90} data={perf}>
           <PolarGrid />
           <PolarAngleAxis
             dataKey="name"
