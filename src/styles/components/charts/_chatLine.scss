@@ -3,8 +3,8 @@
     flex-direction: row;
     justify-content: flex-end;
     background-color: $color_red;
-    height: 263px;
-    width: 258px;
+    width: 28%;
+    aspect-ratio: 1;
     border-radius: 5px;
     position: relative;
 
@@ -17,8 +17,9 @@
     }
     &--chart {
         position: absolute;
+        width: 100%;
         bottom: 0px;
-        left: -80px;
+        left: -30px;
     }
     &--darkenBg {
         background-color: $color_black;

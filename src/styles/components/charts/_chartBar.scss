@@ -1,6 +1,7 @@
 .chartBar {
   color: $color_black;
-  width: 730px;
+  width: 100%;
+  background-color: green;
 
   &__topContainer {
     display: flex;
