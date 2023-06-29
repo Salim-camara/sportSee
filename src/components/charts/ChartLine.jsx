@@ -23,7 +23,7 @@ const ChartLine = () => {
     <div className="chartLine">
       <p className="chartLine--title">Durée moyenne des sessions</p>
       <div className="chartLine--chart">
-        <ResponsiveContainer width={'135%'} aspect={2}>
+        <ResponsiveContainer width={"135%"} aspect={2}>
           <LineChart
             data={averageSession}
             // margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -48,8 +48,8 @@ const ChartLine = () => {
       </div>
       <div className="chartLine--darkenBg"></div>
       <div className="chartLine__days">
-        {days.map((el) => (
-          <p>{el}</p>
+        {days.map((el, i) => (
+          <p key={i}>{el}</p>
         ))}
       </div>
     </div>

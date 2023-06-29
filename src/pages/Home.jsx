@@ -139,8 +139,9 @@ const Home = () => {
               </div>
             </div>
             <div className="home__content__board__bottom__right">
-              {infoCard.map((el) => (
+              {infoCard.map((el, i) => (
                 <CardInfo
+                  key={i}
                   title={el.title}
                   bgc={el.bgc}
                   number={el.number}
