@@ -1,6 +1,7 @@
 .chartBar {
   color: $color_black;
   width: 100%;
+  position: relative;
 
   &__topContainer {
     display: flex;
@@ -12,6 +13,7 @@
       font-size: 15px;
       color: $color_black;
       font-weight: 500;
+      margin-left: 5px;
     }
 
     &__rightInfo {
@@ -56,5 +58,25 @@
         }
       }
     }
+  }
+
+  &--leftHideBar {
+    position: absolute;
+    top: 50px;
+    left: 2px;
+    height: 220px;
+    width: 4px;
+    background-color: white;
+    z-index: 5;
+  }
+
+  &--rightHideBar {
+    position: absolute;
+    top: 50px;
+    right: 58px;
+    height: 220px;
+    width: 12px;
+    background-color: white;
+    z-index: 5;
   }
 }
