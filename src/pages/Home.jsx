@@ -7,7 +7,7 @@ import CardInfo from "../components/CardInfo";
 import { useData } from "../hooks/useData";
 
 const Home = () => {
-  const { user, userInfos } = useData();
+  const { user, userInfos, manageError } = useData();
   const infoCard = [
     {
       title: "Calories",
@@ -109,8 +109,19 @@ const Home = () => {
         <div className="home__content__board">
           <div className="home__content__board__top">
             <div className="home__content__board__top__title">
-              <p className="home__content__board__top__title--hello">Bonjour&nbsp;</p>
-              <p className="home__content__board__top__title--name">{user?.firstName}</p>
+              <p
+                className="home__content__board__top__title--hello"
+                style={manageError ? { color: "red" } : {}}
+              >
+                {!manageError
+                  ? "Bonjour "
+                  : `Une erreur est survenue: ${manageError}`}
+              </p>
+              {!manageError && (
+                <p className="home__content__board__top__title--name">
+                  {user?.firstName}
+                </p>
+              )}
             </div>
             <p className="home__content__board__top__subtitle">
               Félicitations ! Vous avez explosé vos objectifs hier{" "}
