@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-// import Axios from "axios";
+import Axios from "axios";
+import Mock from "./../services/mock.json";
 import { REQUEST_URL, USERID } from "../services/variables";
 
 export const DataContext = createContext();
@@ -23,83 +24,89 @@ const DataContextProvider = (props) => {
   useEffect(() => {
     if (!testMode) {
       setManageError("");
-      // Axios.get(`${REQUEST_URL}${USERID}`)
-      //   .then((res) => {
-      //     const data = res.data.data;
-      //     setUser({
-      //       id: data.id,
-      //       ...data.userInfos,
-      //     });
-      //     setUserInfos({
-      //       todayScore: data.todayScore,
-      //       ...data.keyData,
-      //     });
-      //   })
-      //   .catch((err) => {
-      //     console.error("error: ", err);
-      //     setManageError(`L'erreur s'est produite sur la route /${USERID}`);
-      //   });
-      // Axios.get(`${REQUEST_URL}${USERID}/average-sessions`)
-      //   .then((res) => {
-      //     const data = res.data.data;
-      //     setAverageSession(data.sessions);
-      //   })
-      //   .catch((err) => {
-      //     console.error("error: ", err);
-      //     setManageError(
-      //       `L'erreur s'est produite sur la route /${USERID}/average-sessions`
-      //     );
-      //   });
-      // Axios.get(`${REQUEST_URL}${USERID}/performance`)
-      //   .then(async (res) => {
-      //     const data = res.data.data;
-      //     let tmp = await Promise.all(
-      //       data.data.map((el) => {
-      //         return {
-      //           value: el.value,
-      //           name: data.kind[el.kind],
-      //         };
-      //       })
-      //     );
-      //     setPerf(tmp);
-      //   })
-      //   .catch((err) => {
-      //     console.error("error: ", err);
-      //     setManageError(
-      //       `L'erreur s'est produite sur la route /${USERID}/performance`
-      //     );
-      //   });
-      // Axios.get(`${REQUEST_URL}${USERID}/activity`)
-      //   .then(async (res) => {
-      //     const data = res.data.data.sessions;
-      //     let tmp = await Promise.all(
-      //       data.map((el) => {
-      //         return {
-      //           ...el,
-      //         };
-      //       })
-      //     );
-      //     setActivity(tmp);
-      //   })
-      //   .catch((err) => {
-      //     console.error("error: ", err);
-      //     setManageError(
-      //       `L'erreur s'est produite sur la route /${USERID}/activity`
-      //     );
-      //   });
+      Axios.get(`${REQUEST_URL}${USERID}`)
+        .then((res) => {
+          const data = res.data.data;
+          setUser({
+            id: data.id,
+            ...data.userInfos,
+          });
+          setUserInfos({
+            todayScore: data.todayScore,
+            ...data.keyData,
+          });
+        })
+        .catch((err) => {
+          console.error("error: ", err);
+          setManageError(`L'erreur s'est produite sur la route /${USERID}`);
+        });
+      Axios.get(`${REQUEST_URL}${USERID}/average-sessions`)
+        .then((res) => {
+          const data = res.data.data;
+          setAverageSession(data.sessions);
+        })
+        .catch((err) => {
+          console.error("error: ", err);
+          setManageError(
+            `L'erreur s'est produite sur la route /${USERID}/average-sessions`
+          );
+        });
+      Axios.get(`${REQUEST_URL}${USERID}/performance`)
+        .then(async (res) => {
+          const data = res.data.data;
+          let tmp = await Promise.all(
+            data.data.map((el) => {
+              return {
+                value: el.value,
+                name: data.kind[el.kind],
+              };
+            })
+          );
+          setPerf(tmp);
+        })
+        .catch((err) => {
+          console.error("error: ", err);
+          setManageError(
+            `L'erreur s'est produite sur la route /${USERID}/performance`
+          );
+        });
+      Axios.get(`${REQUEST_URL}${USERID}/activity`)
+        .then(async (res) => {
+          const data = res.data.data.sessions;
+          let tmp = await Promise.all(
+            data.map((el) => {
+              return {
+                ...el,
+              };
+            })
+          );
+          setActivity(tmp);
+        })
+        .catch((err) => {
+          console.error("error: ", err);
+          setManageError(
+            `L'erreur s'est produite sur la route /${USERID}/activity`
+          );
+        });
     } else {
-      // MOCK
       (async () => {
-        // TO DO: Change fetch to axios and format correctly data & remove comment
-        //
-        // const dataUser = await fetch("./../services/mock.json");
-        // setUser(dataUser);
-        // const dataActivity = await fetch("./../services/mock.json");
-        // setActivity(dataActivity);
-        // const dataAverage = await fetch("./../services/mock.json");
-        // setUser(dataAverage);
-        // const dataPerf = await fetch("./../services/mock.json");
-        // setUser(dataPerf);
+        setManageError("");
+        setUser(Mock.user.data.userInfos);
+        setUserInfos({
+          todayScore: Mock.user.data.todayScore,
+          ...Mock.user.data.keyData,
+        });
+        setActivity(Mock.activity.data.sessions);
+        setAverageSession(Mock.activity.averagesessions.data.sessions);
+        let tmpPerf = await Promise.all(
+          Mock.activity.performance.data.data.map((el) => {
+            return {
+              value: el.value,
+              name: Mock.activity.performance.data.kind[el.kind],
+            };
+          })
+        );
+        setPerf(tmpPerf);
       })();
     }
   }, []);

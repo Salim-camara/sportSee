@@ -8,6 +8,7 @@ import { useData } from "../hooks/useData";
 
 const Home = () => {
   const { user, userInfos, manageError } = useData();
+  console.log("l11 ", userInfos);
   const infoCard = [
     {
       title: "Calories",
@@ -111,10 +112,10 @@ const Home = () => {
             <div className="home__content__board__top__title">
               <p
                 className="home__content__board__top__title--hello"
-                style={manageError ? { color: "red" } : {}}
+                style={manageError ? { color: "red" } : { marginRight: 10 }}
               >
                 {!manageError
-                  ? "Bonjour "
+                  ? `Bonjour${" "}`
                   : `Une erreur est survenue: ${manageError}`}
               </p>
               {!manageError && (

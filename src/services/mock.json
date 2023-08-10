@@ -57,7 +57,7 @@
         }
       ]
     },
-    "average-sessions": {
+    "averagesessions": {
       "data": {
         "userId": 12,
         "sessions": [
