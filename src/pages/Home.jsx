@@ -1,56 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChartBar from "../components/charts/ChartBar";
 import ChartLine from "../components/charts/ChartLine";
-import ChartRadar from "../components/charts/ChartRadar";
+// import ChartRadar from "../components/charts/ChartRadar";
 import ChartCircle from "../components/charts/ChartCircle";
 import CardInfo from "../components/CardInfo";
 import { useData } from "../hooks/useData";
+import DataFormater from "../services/dataFormater";
 
 const Home = () => {
-  const { user, userInfos, manageError } = useData();
-  console.log("l11 ", userInfos);
-  const infoCard = [
-    {
-      title: "Calories",
-      bgc: "rgba(255, 1, 1, 0.1)",
-      value: "kCal",
-      icon: require("./../assets/images/icon_fire.png"),
-      number: userInfos?.calorieCount,
-    },
-    {
-      title: "Proteines",
-      bgc: "rgba(74, 184, 255, 0.1)",
-      value: "g",
-      icon: require("./../assets/images/icon_chicken.png"),
-      iconStyle: {
-        width: 18.84,
-        height: 18.74,
-      },
-      number: userInfos?.proteinCount,
-    },
-    {
-      title: "Glucides",
-      bgc: "rgba(253, 204, 12, 0.1)",
-      value: "g",
-      icon: require("./../assets/images/icon_apple.png"),
-      iconStyle: {
-        width: 16.81,
-        height: 20,
-      },
-      number: userInfos?.carbohydrateCount,
-    },
-    {
-      title: "Lipides",
-      bgc: "rgba(253, 81, 129, 0.1)",
-      value: "g",
-      icon: require("./../assets/images/icon_burger.png"),
-      iconStyle: {
-        width: 20,
-        height: 18.75,
-      },
-      number: userInfos?.lipidCount,
-    },
-  ];
+  const { user, manageError } = useData();
+  const [infoCard, setInfoCard] = useState();
+  const data = DataFormater({ title: "INFOCARD_FORMATER" });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setInfoCard(data);
+      console.log("l18 ", data);
+    }, 200);
+  }, []);
 
   return (
     <div className="home">
@@ -134,13 +101,13 @@ const Home = () => {
                 <ChartBar />
                 <div className="home__content__board__bottom__left--chartsContainer">
                   <ChartLine />
-                  <ChartRadar />
+                  {/* <ChartRadar /> */}
                   <ChartCircle />
                 </div>
               </div>
             </div>
             <div className="home__content__board__bottom__right">
-              {infoCard.map((el, i) => (
+              {infoCard?.map((el, i) => (
                 <CardInfo
                   key={i}
                   title={el.title}

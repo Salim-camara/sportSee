@@ -11,9 +11,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useData } from "../../hooks/useData";
+import DataFormater from "../../services/dataFormater";
 
 const ChartBar = () => {
   const { user, activity } = useData();
+
+  // DataFormater({ title: "PERF_FORMATER" });
 
   // const data = [
   //   {
@@ -57,9 +60,8 @@ const ChartBar = () => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey={(e) => {
-              return e.name;
-              // const index = activity.findIndex((item) => item.day === e.day);
-              // return index + 1;
+              const index = activity.findIndex((item) => item.day === e.day);
+              return index + 1;
             }}
             tick={true}
           />
