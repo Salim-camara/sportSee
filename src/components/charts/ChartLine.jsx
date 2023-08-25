@@ -24,10 +24,7 @@ const ChartLine = () => {
       <p className="chartLine--title">Durée moyenne des sessions</p>
       <div className="chartLine--chart">
         <ResponsiveContainer width={"135%"} aspect={2}>
-          <LineChart
-            data={averageSession}
-            // margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
+          <LineChart data={averageSession}>
             <CartesianGrid strokeDasharray="3 3" stroke="transparent" />
             <XAxis
               dataKey="day"

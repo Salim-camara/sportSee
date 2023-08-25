@@ -8,16 +8,9 @@ import { useData } from "../hooks/useData";
 import DataFormater from "../services/dataFormater";
 
 const Home = () => {
-  const { user, manageError } = useData();
+  const { user, userInfos, manageError } = useData();
   const [infoCard, setInfoCard] = useState();
-  const data = DataFormater({ title: "INFOCARD_FORMATER" });
-
-  useEffect(() => {
-    setTimeout(() => {
-      setInfoCard(data);
-      console.log("l18 ", data);
-    }, 200);
-  }, []);
+  console.log("l13 ", user);
 
   return (
     <div className="home">
@@ -107,7 +100,7 @@ const Home = () => {
               </div>
             </div>
             <div className="home__content__board__bottom__right">
-              {infoCard?.map((el, i) => (
+              {DataFormater.InfoCard(userInfos)?.map((el, i) => (
                 <CardInfo
                   key={i}
                   title={el.title}

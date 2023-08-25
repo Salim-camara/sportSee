@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useData } from "../hooks/useData";
+class DataFormater {
+  static BarGetIndex(data, e) {
+    const index = data.findIndex((item) => item.day === e.day);
+    return index + 1;
+  }
 
-const DataFormater = ({ title }) => {
-  const { userInfos, user } = useData();
-  const [data, setData] = useState();
-
-  const PERF_FORMATER = () => {};
-  const INFOCARD_FORMATER = () => {
-    const infoCard = [
+  static InfoCard(data) {
+    return [
       {
         title: "Calories",
         bgc: "rgba(255, 1, 1, 0.1)",
         value: "kCal",
         icon: require("./../assets/images/icon_fire.png"),
-        number: userInfos?.calorieCount,
+        number: data?.calorieCount,
       },
       {
         title: "Proteines",
@@ -24,7 +22,7 @@ const DataFormater = ({ title }) => {
           width: 18.84,
           height: 18.74,
         },
-        number: userInfos?.proteinCount,
+        number: data?.proteinCount,
       },
       {
         title: "Glucides",
@@ -35,7 +33,7 @@ const DataFormater = ({ title }) => {
           width: 16.81,
           height: 20,
         },
-        number: userInfos?.carbohydrateCount,
+        number: data?.carbohydrateCount,
       },
       {
         title: "Lipides",
@@ -46,20 +44,24 @@ const DataFormater = ({ title }) => {
           width: 20,
           height: 18.75,
         },
-        number: userInfos?.lipidCount,
+        number: data?.lipidCount,
       },
     ];
-    setData(infoCard);
-  };
+  }
 
-  useEffect(() => {
-    switch (title) {
-      case "INFOCARD_FORMATER":
-        INFOCARD_FORMATER();
-    }
-  }, []);
-
-  return data;
-};
+  static Circle(data) {
+    return [
+      {
+        fill: "transparent",
+        value: 100,
+      },
+      {
+        ...data,
+        value: data?.todayScore * 100,
+        fill: "#FF0101",
+      },
+    ];
+  }
+}
 
 export default DataFormater;

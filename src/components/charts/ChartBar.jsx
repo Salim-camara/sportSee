@@ -16,26 +16,6 @@ import DataFormater from "../../services/dataFormater";
 const ChartBar = () => {
   const { user, activity } = useData();
 
-  // DataFormater({ title: "PERF_FORMATER" });
-
-  // const data = [
-  //   {
-  //     name: "Page A",
-  //     uv: 4000,
-  //     pv: 2400,
-  //   },
-  //   {
-  //     name: "Page B",
-  //     uv: 3000,
-  //     pv: 1398,
-  //   },
-  //   {
-  //     name: "Page C",
-  //     uv: 2000,
-  //     pv: 9800,
-  //   },
-  // ];
-
   return (
     <div className="chartBar">
       <div className="chartBar__topContainer">
@@ -60,8 +40,7 @@ const ChartBar = () => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey={(e) => {
-              const index = activity.findIndex((item) => item.day === e.day);
-              return index + 1;
+              return DataFormater.BarGetIndex(activity, e);
             }}
             tick={true}
           />

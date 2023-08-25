@@ -19,7 +19,7 @@ const DataContextProvider = (props) => {
   const [manageError, setManageError] = useState("Erreur récup URL");
 
   // SWITCH TEST MODE (used mock)
-  const [testMode, setTestMode] = useState(true);
+  const [testMode, setTestMode] = useState(false);
 
   useEffect(() => {
     if (!testMode) {

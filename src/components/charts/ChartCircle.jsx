@@ -7,6 +7,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useData } from "../../hooks/useData";
+import DataFormater from "../../services/dataFormater";
 
 const ChartCircle = () => {
   const { userInfos } = useData();
@@ -14,18 +15,6 @@ const ChartCircle = () => {
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    userInfos &&
-      setFormatedData([
-        {
-          fill: "transparent",
-          value: 100,
-        },
-        {
-          ...userInfos,
-          value: userInfos.todayScore * 100,
-          fill: "#FF0101",
-        },
-      ]);
     setLoad(true);
   }, [userInfos]);
 
@@ -37,7 +26,7 @@ const ChartCircle = () => {
           <RadialBarChart
             innerRadius="60%"
             outerRadius="90%"
-            data={formatedData}
+            data={load && DataFormater.Circle(userInfos)}
             startAngle={90}
             endAngle={450}
           >
@@ -45,9 +34,11 @@ const ChartCircle = () => {
           </RadialBarChart>
         </ResponsiveContainer>
       )}
-      {load && (
+      {userInfos && (
         <div className="chartCircle__text">
-          <p className="chartCircle__text--title">{formatedData[1]?.value}%</p>
+          <p className="chartCircle__text--title">
+            {DataFormater.Circle(userInfos)[1]?.value}%
+          </p>
           <p className="chartCircle__text--subTitle">
             de votre <br />
             objectif
