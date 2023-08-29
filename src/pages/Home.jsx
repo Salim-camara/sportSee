@@ -81,7 +81,7 @@ const Home = () => {
               )}
             </div>
             <p className="home__content__board__top__subtitle">
-              Félicitations ! Vous avez explosé vos objectifs hier{" "}
+              Félicitations ! Vous avez explosé vos objectifs hier 👏
             </p>
           </div>
           <div className="home__content__board__bottom">

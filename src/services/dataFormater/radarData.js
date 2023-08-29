@@ -14,6 +14,8 @@ class RadarData {
           return "Vitesse";
         case "cardio":
           return "Cardio";
+        default:
+          return "";
       }
     };
     const tmp = data?.map((el) => {
