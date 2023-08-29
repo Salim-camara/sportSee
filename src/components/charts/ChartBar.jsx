@@ -15,6 +15,33 @@ import DataFormater from "../../services/dataFormater";
 
 const ChartBar = () => {
   const { user, activity } = useData();
+  const CustomToolTip = ({ data }) => {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "red",
+          height: 100,
+          width: 70,
+          border: "none",
+        }}
+      >
+        <p
+          style={{ margin: 0, color: "white", fontSize: 13, marginBottom: 10 }}
+        >
+          {" "}
+          {data?.payload[0]?.value} kg
+        </p>
+        <p style={{ margin: 0, color: "white", fontSize: 13, marginTop: 10 }}>
+          {" "}
+          {data?.payload[1]?.value} Kcal
+        </p>
+      </div>
+    );
+  };
 
   return (
     <div className="chartBar">
@@ -45,7 +72,7 @@ const ChartBar = () => {
             tick={true}
           />
           <YAxis orientation="right" />
-          <Tooltip />
+          <Tooltip content={(e) => <CustomToolTip data={e} />} />
           <Bar
             dataKey="kilogram"
             fill="#020203"

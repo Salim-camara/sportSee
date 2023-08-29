@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import ChartBar from "../components/charts/ChartBar";
 import ChartLine from "../components/charts/ChartLine";
-// import ChartRadar from "../components/charts/ChartRadar";
 import ChartCircle from "../components/charts/ChartCircle";
 import CardInfo from "../components/CardInfo";
 import { useData } from "../hooks/useData";
 import DataFormater from "../services/dataFormater";
+import ChartRadar from "../components/charts/ChartRadar";
+import InfoCardData from "../services/dataFormater/infoCardData";
 
 const Home = () => {
   const { user, userInfos, manageError } = useData();
-  const [infoCard, setInfoCard] = useState();
-  console.log("l13 ", user);
+  const usableCardData = new InfoCardData(userInfos).data;
 
   return (
     <div className="home">
@@ -94,13 +94,13 @@ const Home = () => {
                 <ChartBar />
                 <div className="home__content__board__bottom__left--chartsContainer">
                   <ChartLine />
-                  {/* <ChartRadar /> */}
+                  <ChartRadar />
                   <ChartCircle />
                 </div>
               </div>
             </div>
             <div className="home__content__board__bottom__right">
-              {DataFormater.InfoCard(userInfos)?.map((el, i) => (
+              {usableCardData?.map((el, i) => (
                 <CardInfo
                   key={i}
                   title={el.title}

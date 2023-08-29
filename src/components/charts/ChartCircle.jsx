@@ -11,7 +11,6 @@ import DataFormater from "../../services/dataFormater";
 
 const ChartCircle = () => {
   const { userInfos } = useData();
-  const [formatedData, setFormatedData] = useState([]);
   const [load, setLoad] = useState(false);
 
   useEffect(() => {

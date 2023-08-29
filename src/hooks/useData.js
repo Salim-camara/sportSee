@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import Mock from "./../services/mock.json";
 import { REQUEST_URL, USERID } from "../services/variables";
+import PerformanceData from "../services/dataFormater/performanceData";
 
 export const DataContext = createContext();
 export const useData = () => useContext(DataContext);
@@ -56,10 +57,7 @@ const DataContextProvider = (props) => {
           const data = res.data.data;
           let tmp = await Promise.all(
             data.data.map((el) => {
-              return {
-                value: el.value,
-                name: data.kind[el.kind],
-              };
+              return new PerformanceData(el.value, data.kind[el.kind]);
             })
           );
           setPerf(tmp);
