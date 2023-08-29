@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import Mock from "./../services/mock.json";
-import { REQUEST_URL, USERID } from "../services/variables";
+import { IS_TESTMODE, REQUEST_URL, USERID } from "../services/variables";
 import PerformanceData from "../services/dataFormater/performanceData";
+import CheckFieldNameData from "../services/dataFormater/checkFieldNameData";
 
 export const DataContext = createContext();
 export const useData = () => useContext(DataContext);
@@ -20,7 +21,7 @@ const DataContextProvider = (props) => {
   const [manageError, setManageError] = useState("Erreur récup URL");
 
   // SWITCH TEST MODE (used mock)
-  const [testMode, setTestMode] = useState(false);
+  const testMode = IS_TESTMODE;
 
   useEffect(() => {
     if (!testMode) {
@@ -33,7 +34,7 @@ const DataContextProvider = (props) => {
             ...data.userInfos,
           });
           setUserInfos({
-            todayScore: data.todayScore,
+            todayScore: new CheckFieldNameData(data).score,
             ...data.keyData,
           });
         })
@@ -107,7 +108,7 @@ const DataContextProvider = (props) => {
         setPerf(tmpPerf);
       })();
     }
-  }, []);
+  }, [testMode]);
 
   return (
     <DataContext.Provider

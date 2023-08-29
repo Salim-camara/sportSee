@@ -28,3 +28,5 @@ class RadarData {
     this.data = tmp;
   }
 }
+
+export default RadarData;

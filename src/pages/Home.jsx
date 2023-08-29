@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ChartBar from "../components/charts/ChartBar";
 import ChartLine from "../components/charts/ChartLine";
 import ChartCircle from "../components/charts/ChartCircle";
 import CardInfo from "../components/CardInfo";
 import { useData } from "../hooks/useData";
-import DataFormater from "../services/dataFormater";
 import ChartRadar from "../components/charts/ChartRadar";
 import InfoCardData from "../services/dataFormater/infoCardData";
 
@@ -19,22 +18,15 @@ const Home = () => {
           <img
             src={require("./../assets/images/logo.png")}
             className="home__header__logo--img"
+            alt="logo"
           />
           <p className="home__header__logo--text">SportSee</p>
         </div>
         <div className="home__header__menu">
-          <a className="home__header__menu--text" href="#">
-            Accueil
-          </a>
-          <a className="home__header__menu--text" href="#">
-            Profil
-          </a>
-          <a className="home__header__menu--text" href="#">
-            Réglage
-          </a>
-          <a className="home__header__menu--text" href="#">
-            Communauté
-          </a>
+          <div className="home__header__menu--text">Accueil</div>
+          <div className="home__header__menu--text">Profil</div>
+          <div className="home__header__menu--text">Réglage</div>
+          <div className="home__header__menu--text">Communauté</div>
         </div>
       </div>
       <div className="home__content">
@@ -44,24 +36,28 @@ const Home = () => {
               <img
                 src={require("./../assets/images/menu_1.png")}
                 className="home__content__menu__btn--first"
+                alt="menu_1"
               />
             </div>
             <div className="home__content__menu__btn--global">
               <img
                 src={require("./../assets/images/menu_2.png")}
                 className="home__content__menu__btn--second"
+                alt="menu_2"
               />
             </div>
             <div className="home__content__menu__btn--global">
               <img
                 src={require("./../assets/images/menu_3.png")}
                 className="home__content__menu__btn--third"
+                alt="menu_3"
               />
             </div>
             <div className="home__content__menu__btn--global">
               <img
                 src={require("./../assets/images/menu_4.png")}
                 className="home__content__menu__btn--forth"
+                alt="menu_4"
               />
             </div>
           </div>

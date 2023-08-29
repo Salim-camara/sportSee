@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
-import {
-  Legend,
-  RadialBarChart,
-  RadialBar,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import { useData } from "../../hooks/useData";
-import DataFormater from "../../services/dataFormater";
+import CircleData from "../../services/dataFormater/circleData";
 
 const ChartCircle = () => {
   const { userInfos } = useData();
   const [load, setLoad] = useState(false);
+  const [circle, setCircle] = useState([]);
 
   useEffect(() => {
     setLoad(true);
+    setCircle(new CircleData(userInfos).data);
   }, [userInfos]);
 
   return (
@@ -25,7 +21,7 @@ const ChartCircle = () => {
           <RadialBarChart
             innerRadius="60%"
             outerRadius="90%"
-            data={load && DataFormater.Circle(userInfos)}
+            data={load && circle}
             startAngle={90}
             endAngle={450}
           >
@@ -35,9 +31,7 @@ const ChartCircle = () => {
       )}
       {userInfos && (
         <div className="chartCircle__text">
-          <p className="chartCircle__text--title">
-            {DataFormater.Circle(userInfos)[1]?.value}%
-          </p>
+          <p className="chartCircle__text--title">{circle[1]?.value}%</p>
           <p className="chartCircle__text--subTitle">
             de votre <br />
             objectif

@@ -4,17 +4,14 @@ import {
   Bar,
   XAxis,
   YAxis,
-  Legend,
   Tooltip,
   CartesianGrid,
-  Cell,
   ResponsiveContainer,
 } from "recharts";
 import { useData } from "../../hooks/useData";
-import DataFormater from "../../services/dataFormater";
 
 const ChartBar = () => {
-  const { user, activity } = useData();
+  const { activity } = useData();
   const CustomToolTip = ({ data }) => {
     return (
       <div
@@ -67,7 +64,8 @@ const ChartBar = () => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis
             dataKey={(e) => {
-              return DataFormater.BarGetIndex(activity, e);
+              const index = activity.findIndex((item) => item.day === e.day);
+              return index + 1;
             }}
             tick={true}
           />

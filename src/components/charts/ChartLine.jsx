@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
-  Legend,
   Tooltip,
   CartesianGrid,
   LineChart,
@@ -17,7 +14,26 @@ const ChartLine = () => {
   const { averageSession } = useData();
   const days = ["L", "M", "M", "J", "V", "S", "D"];
 
-  const CustomTooltips = (e) => <p style={{ color: "black" }}>{e}</p>;
+  const CustomTooltips = ({ data }) => {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "white",
+          height: 50,
+          width: 70,
+          border: "none",
+        }}
+      >
+        <p style={{ margin: 0, color: "black", fontSize: 13 }}>
+          {`${data?.payload[0]?.payload?.sessionLength} min`}
+        </p>
+      </div>
+    );
+  };
 
   return (
     <div className="chartLine">
@@ -32,7 +48,11 @@ const ChartLine = () => {
               tick={false}
               strokeOpacity={0}
             />
-            <Tooltip formatter={CustomTooltips} />
+            <Tooltip
+              content={(e) => {
+                return <CustomTooltips data={e} />;
+              }}
+            />
             <YAxis tick={false} axisLine={false} />
             <Line
               type="monotone"
