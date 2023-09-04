@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 import { useData } from "../../hooks/useData";
-import CircleData from "../../services/dataFormater/circleData";
 
 const ChartCircle = () => {
-  const { userInfos } = useData();
+  const { userInfos, circleData } = useData();
   const [load, setLoad] = useState(false);
   const [circle, setCircle] = useState([]);
 
   useEffect(() => {
     setLoad(true);
-    setCircle(new CircleData(userInfos).data);
-  }, [userInfos]);
+    setCircle(circleData);
+  }, [userInfos, circleData]);
 
   return (
     <div className="chartCircle">
@@ -31,7 +30,9 @@ const ChartCircle = () => {
       )}
       {userInfos && (
         <div className="chartCircle__text">
-          <p className="chartCircle__text--title">{circle[1]?.value}%</p>
+          <p className="chartCircle__text--title">
+            {circle && circle[1]?.value}%
+          </p>
           <p className="chartCircle__text--subTitle">
             de votre <br />
             objectif

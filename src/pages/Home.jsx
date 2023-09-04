@@ -5,11 +5,10 @@ import ChartCircle from "../components/charts/ChartCircle";
 import CardInfo from "../components/CardInfo";
 import { useData } from "../hooks/useData";
 import ChartRadar from "../components/charts/ChartRadar";
-import InfoCardData from "../services/dataFormater/infoCardData";
 
 const Home = () => {
-  const { user, userInfos, manageError } = useData();
-  const usableCardData = new InfoCardData(userInfos).data;
+  const { user, manageError, miniCard } = useData();
+  const usableCardData = miniCard;
 
   return (
     <div className="home">

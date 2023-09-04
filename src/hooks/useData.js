@@ -4,6 +4,9 @@ import Mock from "./../services/mock.json";
 import { IS_TESTMODE, REQUEST_URL, USERID } from "../services/variables";
 import PerformanceData from "../services/dataFormater/performanceData";
 import CheckFieldNameData from "../services/dataFormater/checkFieldNameData";
+import RadarData from "../services/dataFormater/radarData";
+import InfoCardData from "../services/dataFormater/infoCardData";
+import CircleData from "../services/dataFormater/circleData";
 
 export const DataContext = createContext();
 export const useData = () => useContext(DataContext);
@@ -18,6 +21,9 @@ const DataContextProvider = (props) => {
   const [averageSession, setAverageSession] = useState(null);
   const [activity, setActivity] = useState(null);
   const [perf, setPerf] = useState(null);
+  const [radarData, setRadarData] = useState(null);
+  const [miniCard, setMiniCard] = useState(null);
+  const [circleData, setCircleData] = useState(null);
   const [manageError, setManageError] = useState("Erreur récup URL");
 
   // SWITCH TEST MODE (used mock)
@@ -33,10 +39,13 @@ const DataContextProvider = (props) => {
             id: data.id,
             ...data.userInfos,
           });
-          setUserInfos({
+          let tmp = {
             todayScore: new CheckFieldNameData(data).score,
             ...data.keyData,
-          });
+          };
+          setUserInfos(tmp);
+          setMiniCard(new InfoCardData(tmp).data);
+          setCircleData(new CircleData(tmp).data);
         })
         .catch((err) => {
           console.error("error: ", err);
@@ -62,6 +71,7 @@ const DataContextProvider = (props) => {
             })
           );
           setPerf(tmp);
+          setRadarData(new RadarData(tmp).data);
         })
         .catch((err) => {
           console.error("error: ", err);
@@ -90,22 +100,26 @@ const DataContextProvider = (props) => {
     } else {
       (async () => {
         setManageError("");
-        setUser(Mock.user.data.userInfos);
-        setUserInfos({
-          todayScore: Mock.user.data.todayScore,
-          ...Mock.user.data.keyData,
-        });
-        setActivity(Mock.activity.data.sessions);
-        setAverageSession(Mock.activity.averagesessions.data.sessions);
+        setUser(Mock?.user?.data?.userInfos);
+        let tmpUserInfos = {
+          todayScore: Mock?.user?.data?.todayScore,
+          ...Mock?.user?.data?.keyData,
+        };
+        setUserInfos(tmpUserInfos);
+        setCircleData(new CircleData(tmpUserInfos).data);
+        setMiniCard(new InfoCardData(tmpUserInfos).data);
+        setActivity(Mock?.activity?.data?.sessions);
+        setAverageSession(Mock?.activity?.averagesessions?.data?.sessions);
         let tmpPerf = await Promise.all(
-          Mock.activity.performance.data.data.map((el) => {
+          Mock?.activity?.performance?.data?.data?.map((el) => {
             return {
               value: el.value,
-              name: Mock.activity.performance.data.kind[el.kind],
+              name: Mock?.activity?.performance?.data?.kind[el.kind],
             };
           })
         );
         setPerf(tmpPerf);
+        setRadarData(new RadarData(tmpPerf).data);
       })();
     }
   }, [testMode]);
@@ -119,6 +133,9 @@ const DataContextProvider = (props) => {
         perf,
         activity,
         manageError,
+        radarData,
+        miniCard,
+        circleData,
       }}
     >
       {props.children}

@@ -7,11 +7,10 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useData } from "../../hooks/useData";
-import RadarData from "../../services/dataFormater/radarData";
 
 const ChartRadar = () => {
-  const { perf } = useData();
-  const data = perf && new RadarData(perf).data;
+  const { radarData } = useData();
+  const data = radarData;
   const [outerRadius, setOuterRadius] = useState(80);
   const CustomPolarGrid = () => null;
 
@@ -43,8 +42,6 @@ const ChartRadar = () => {
         <ResponsiveContainer width={"50%"} height={"50%"}>
           <RadarChart
             outerRadius={outerRadius}
-            // width={730}
-            // height={250}
             data={data}
             overflow={"visible"}
           >

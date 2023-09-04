@@ -26,16 +26,27 @@ const ChartBar = () => {
           border: "none",
         }}
       >
-        <p
-          style={{ margin: 0, color: "white", fontSize: 13, marginBottom: 10 }}
-        >
-          {" "}
-          {data?.payload[0]?.value} kg
-        </p>
-        <p style={{ margin: 0, color: "white", fontSize: 13, marginTop: 10 }}>
-          {" "}
-          {data?.payload[1]?.value} Kcal
-        </p>
+        {data?.payload && (
+          <>
+            <p
+              style={{
+                margin: 0,
+                color: "white",
+                fontSize: 13,
+                marginBottom: 10,
+              }}
+            >
+              {" "}
+              {data?.payload[0]?.value} kg
+            </p>
+            <p
+              style={{ margin: 0, color: "white", fontSize: 13, marginTop: 10 }}
+            >
+              {" "}
+              {data?.payload[1]?.value} Kcal
+            </p>
+          </>
+        )}
       </div>
     );
   };
